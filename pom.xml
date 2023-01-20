@@ -5,15 +5,16 @@
   <groupId>org.example</groupId>
   <artifactId>Meetup</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
 
-  <name>Meetup</name>
-  <url>http://maven.apache.org</url>
+<!--  <name>Meetup</name>-->
+<!--  <url>http://maven.apache.org</url>-->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <maven.compiler.source>1.8</maven.compiler.source>
       <maven.compiler.target>1.8</maven.compiler.target>
+
   </properties>
 
   <dependencies>
@@ -30,7 +31,6 @@
       <version>42.5.1</version>
     </dependency>
 
-
     <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
     <dependency>
       <groupId>org.liquibase</groupId>
@@ -38,12 +38,27 @@
       <version>4.18.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
 
   </dependencies>
 
   <build>
     <pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
       <plugin>
 
         <groupId>org.liquibase</groupId>
