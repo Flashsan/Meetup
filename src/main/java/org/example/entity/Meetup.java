@@ -1,24 +1,26 @@
 package org.example.entity;
 
+import javax.persistence.Entity;
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Objects;
 
-public class Meetup implements Serializable {
+//@Entity
+public class Meetup implements Serializable
+//        , Closeable
+{
 
     int id;
-    String topic;
-    String organization;
-    String dateAndTime;
-    String location;
+    String name;
 
     public Meetup() {
 
     }
-    public Meetup(int id, String topic, String organization, String dateAndTime, String location) {
+
+    public Meetup(int id, String name) {
         this.id = id;
-        this.topic = topic;
-        this.organization = organization;
-        this.dateAndTime = dateAndTime;
-        this.location = location;
+        this.name = name;
     }
 
     public int getId() {
@@ -29,35 +31,29 @@ public class Meetup implements Serializable {
         this.id = id;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getName() {
+        return name;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getOrganization() {
-        return organization;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Meetup meetup = (Meetup) o;
+        return id == meetup.id && Objects.equals(name, meetup.name);
     }
 
-    public void setOrganization(String organization) {
-        this.organization = organization;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 
-    public String getDateAndTime() {
-        return dateAndTime;
-    }
-
-    public void setDateAndTime(String dateAndTime) {
-        this.dateAndTime = dateAndTime;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
+    //    @Override
+//    public void close() throws IOException {
+//
+//    }
 }
